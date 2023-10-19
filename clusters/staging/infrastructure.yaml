@@ -39,3 +39,10 @@ spec:
       target:
         kind: ClusterIssuer
         name: letsencrypt
+    - patch: |
+        - op: replace
+          path: /spec/values/ingress/hostname
+          value: staging-sealed-secrets
+      target:
+        kind: HelmRelease
+        name: sealed-secrets
