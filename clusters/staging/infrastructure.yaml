@@ -39,24 +39,6 @@ spec:
       target:
         kind: ClusterIssuer
         name: letsencrypt
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: infra-configs-ss
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: infra-controllers
-  interval: 1h
-  retryInterval: 1m
-  timeout: 5m
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-  path: ./infrastructure/configs
-  prune: true
-  patches:
     - patch: |
         - op: replace
           path: /spec/values/ingress/hostname
@@ -64,3 +46,4 @@ spec:
       target:
         kind: HelmRelease
         name: sealed-secrets
+        namespace: kube-system
