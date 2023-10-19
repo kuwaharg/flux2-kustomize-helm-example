@@ -64,4 +64,3 @@ spec:
       target:
         kind: HelmRelease
         name: sealed-secrets
-        namespace: kube-system
